@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140513181244) do
 
   create_table "todos", force: true do |t|
     t.string   "title"
+    t.string   "comment"
     t.boolean  "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
