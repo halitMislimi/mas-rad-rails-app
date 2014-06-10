@@ -4,11 +4,12 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    @todos = Todo.all.order('created_at DESC')
     
     @todos = @todos.send(params[:scope]) if params[:scope]
   
     @todo = Todo.new
+
   end
 
   # GET /todos/1
@@ -45,6 +46,8 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1.json
   def update
     respond_to do |format|
+              format.html { redirect_to root_path, notice: 'Todo was successfully updated.' }
+
       if @todo.update(todo_params)
         format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
